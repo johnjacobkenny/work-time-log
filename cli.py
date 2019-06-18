@@ -13,7 +13,7 @@ def cli(ctx):
     ctx.obj = data
 
     if ctx.invoked_subcommand is None:
-        ctx.invoke(reports)
+        ctx.invoke(report)
 
 @cli.command()
 @click.pass_obj
