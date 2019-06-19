@@ -11,8 +11,8 @@ def week(df):
     hours_spent(df_week)
 
 def hours_spent(df):
-    if pd.isnull(data.exit.iloc[-1]):
-        data.exit.iloc[-1] = pd.to_datetime("today")
+    if pd.isnull(df.exit.iloc[-1]):
+        df.exit.iloc[-1] = pd.to_datetime("today")
     for grp, data in df.groupby("date"):
         date = grp.strftime("%d %b (%a)")
         hours = str(dt.timedelta(
