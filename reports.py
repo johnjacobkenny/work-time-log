@@ -12,6 +12,7 @@ def week(df):
 
 def hours_spent(df):
     for grp, data in df.groupby("date"):
+        date = grp.strftime("%d %b (%a)")
         hours = str(dt.timedelta(
             seconds=((data.exit - data.enter).sum().total_seconds())))
-        print(f"Hours spent on {grp} : {hours}")
+        print(f"{date} - {hours}")
