@@ -44,5 +44,5 @@ def day_summary(df):
     click.secho("I have to work for ", nl=False)
     click.secho(f"{hours_left}", bold = True, fg="red")
     click.secho("I can leave at ", nl=False)
-    click.secho(f"{time_leave.time()}", bold = True, fg="red")
+    click.secho(f"{time_leave.time()}", bold = True, fg="green")
     click.secho()
