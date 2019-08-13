@@ -19,7 +19,7 @@ def hours_spent(df):
         hours = dt.timedelta(
             seconds=((data.exit - data.enter).sum().total_seconds()))
         print(f"{date} - {str(hours)}")
-        return hours
+    return hours
 
 def day_summary(df):
     # In time ############### Out time like a progress bar
