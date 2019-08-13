@@ -36,6 +36,8 @@ def report(data, report_name):
     """
     if report_name == "week":
         reports.week(data)
+    elif report_name == "month":
+        reports.month(data)
     else:
         reports.today(data)
 

@@ -6,6 +6,11 @@ def today(df):
     df_today = df[df.date == str(pd.to_datetime("today").date())]
     day_summary(df_today)
 
+def month(df):
+    one_month_date = pd.to_datetime("today") - pd.to_timedelta("31 days")
+    df_month = df[df.date >= str(one_month_date.date())]
+    hours_spent(df_month)
+
 def week(df):
     last_week_date = pd.to_datetime("today") - pd.to_timedelta("7 days")
     df_week = df[df.date >= str(last_week_date.date())]
