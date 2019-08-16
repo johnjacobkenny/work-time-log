@@ -35,19 +35,20 @@ def day_summary(df):
     # blocks of time - start | end | duration
 
     # whether currently in or out, and the duration of the same
-    in_time = df.iat[0, 1]
-    out_time = df.iat[-1, 2]
+    in_time = df.iat[0, 1].to_pydatetime().strftime("%I:%m %p")
+    out_time = df.iat[-1, 2].to_pydatetime().strftime("%I:%m %p")
     hours = hours_spent(df)
-    hours_left = pd.to_timedelta("8 hours") - hours
-    time_leave = pd.to_datetime("today") + hours_left
-
+    hours_left = (pd.to_timedelta("8 hours") - hours).to_pytimedelta().seconds
+    
+    time_leave = (pd.to_datetime("today") + pd.to_timedelta("8 hours") - hours).to_pydatetime().strftime("%I:%m %p")
+    
     click.secho()
     click.secho(f"{in_time}", bold = True, fg="green")
     click.secho(f"{out_time}", bold = True, fg="red")
     click.secho()
     click.secho()
     click.secho("I have to work for ", nl=False)
-    click.secho(f"{hours_left}", bold = True, fg="red")
+    click.secho(f"{hours_left//3600}hrs {(hours_left%3600)//60}mins", bold = True, fg="red")
     click.secho("I can leave at ", nl=False)
-    click.secho(f"{time_leave.time()}", bold = True, fg="green")
+    click.secho(f"{time_leave}", bold = True, fg="green")
     click.secho()
