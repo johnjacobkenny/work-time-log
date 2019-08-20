@@ -33,14 +33,21 @@ def day_summary(df):
     # If currently OUT, show an estimated 
 
     # blocks of time - start | end | duration
-
     # whether currently in or out, and the duration of the same
-    in_time = df.iat[0, 1].to_pydatetime().strftime("%I:%m %p")
-    out_time = df.iat[-1, 2].to_pydatetime().strftime("%I:%m %p")
+    if df.size == 0:
+        click.secho(f"No logging for today", bold = True, fg="red")
+        return
+        
+    in_time = df.iat[0, 1].to_pydatetime().strftime("%I:%M %p")
+    try:
+        out_time = df.iat[-1, 2].to_pydatetime().strftime("%I:%M %p")
+    except:
+        out_time = ""
+        pass
     hours = hours_spent(df)
     hours_left = (pd.to_timedelta("8 hours") - hours).to_pytimedelta().seconds
     
-    time_leave = (pd.to_datetime("today") + pd.to_timedelta("8 hours") - hours).to_pydatetime().strftime("%I:%m %p")
+    time_leave = (pd.to_datetime("today") + pd.to_timedelta("8 hours") - hours).to_pydatetime().strftime("%I:%M %p")
     
     click.secho()
     click.secho(f"{in_time}", bold = True, fg="green")
